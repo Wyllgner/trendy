@@ -1,125 +1,124 @@
 <p align="center">
-  <img src="TRENDY.png" alt="Logo do Trendy" width="260">
+  <img src="TRENDY.png" alt="Trendy logo" width="260">
 </p>
 
 <h1 align="center">Trendy</h1>
 
 <p align="center">
-  Rede social de microblog inspirada no Twitter, desenvolvida como projeto final da disciplina WDI
-  na Universidade Federal de Rondônia (UNIR).
+  A Twitter inspired microblogging social network, built as the final project for the WDI course
+  at the Federal University of Rondônia (UNIR).
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white" alt="PHP 8.2+">
   <img src="https://img.shields.io/badge/MySQL-MariaDB-4479A1?logo=mysql&logoColor=white" alt="MySQL">
   <img src="https://img.shields.io/badge/Eloquent-ORM-FF2D20?logo=laravel&logoColor=white" alt="Eloquent ORM">
-  <img src="https://img.shields.io/badge/HTML5-CSS3-E34F26?logo=html5&logoColor=white" alt="HTML e CSS">
+  <img src="https://img.shields.io/badge/HTML5-CSS3-E34F26?logo=html5&logoColor=white" alt="HTML and CSS">
 </p>
 
-> **Projeto encerrado.** Este é um trabalho acadêmico de 2024 que não recebe mais atualizações. O código fica
-> disponível como registro e portfólio.
+> **Project archived.** This is a 2024 academic project that is no longer maintained. The code is kept here as a
+> record and as part of our portfolio.
 
-## Sobre o projeto
+## About
 
-O Trendy é uma aplicação web em que usuários criam uma conta, publicam mensagens curtas de até 280 caracteres
-(os "trends"), curtem publicações de outras pessoas e gerenciam o próprio perfil. O projeto usa PHP puro no
-back end, com o Eloquent ORM (componente de banco de dados do Laravel) rodando de forma independente através do
-`illuminate/database`, e MySQL como banco de dados.
+Trendy is a web application where users sign up, post short messages of up to 280 characters (the "trends"), like
+other people's posts and manage their own profile. The back end is written in plain PHP, using the Eloquent ORM
+(Laravel's database layer) as a standalone package through `illuminate/database`, with MySQL as the database.
 
-## Funcionalidades
+The interface is in Portuguese.
 
-**Contas e autenticação**
-- Cadastro de usuário com verificação de nome de usuário já existente
-- Senhas armazenadas com hash bcrypt (`password_hash` e `password_verify`)
-- Login e logout com controle de sessão em PHP
-- Páginas protegidas: o feed e o perfil só abrem para usuários logados
+## Features
+
+**Accounts and authentication**
+- Sign up with a check for usernames that are already taken
+- Passwords stored as bcrypt hashes (`password_hash` and `password_verify`)
+- Login and logout handled with PHP sessions
+- Protected pages: the feed and the profile are only available to logged in users
 
 **Feed**
-- Publicação de mensagens com limite de 280 caracteres
-- Linha do tempo ordenada da mais recente para a mais antiga
-- Curtir e descurtir publicações, com contador de curtidas
-- Edição das próprias publicações, que passam a exibir a marcação "(editado)"
-- Exclusão das próprias publicações
-- Suporte a emojis (conexão configurada em `utf8mb4`)
+- Post messages limited to 280 characters
+- Timeline ordered from newest to oldest
+- Like and unlike posts, with a like counter
+- Edit your own posts, which then show an "(editado)" label
+- Delete your own posts
+- Emoji support (the connection uses `utf8mb4`)
 
-**Perfil**
-- Alteração do nome de usuário, com checagem de disponibilidade
-- Troca de senha com campo de confirmação
+**Profile**
+- Change your username, with an availability check
+- Change your password, with a confirmation field
 
-**Cargos**
-- Cada usuário possui um cargo (`user` por padrão ou `admin`)
-- Administradores podem excluir publicações de qualquer usuário
-- Para administradores, a barra de navegação aparece em vermelho, indicando o modo de moderação
+**Roles**
+- Every user has a role (`user` by default, or `admin`)
+- Admins can delete posts from any user
+- For admins, the navigation bar turns red to signal moderation mode
 
-## Tecnologias
+## Tech stack
 
-| Camada | Tecnologia |
+| Layer | Technology |
 | --- | --- |
-| Back end | PHP 8.2 ou superior |
-| Acesso a dados | Eloquent ORM (`illuminate/database` 11.x) via Capsule |
-| Banco de dados | MySQL ou MariaDB |
-| Front end | HTML5 e CSS3, sem frameworks |
-| Dependências | Composer |
+| Back end | PHP 8.2 or newer |
+| Data access | Eloquent ORM (`illuminate/database` 11.x) through Capsule |
+| Database | MySQL or MariaDB |
+| Front end | HTML5 and CSS3, no frameworks |
+| Dependencies | Composer |
 
-## Estrutura de arquivos
+## Project structure
 
-```
-.
-├── index.html          # Tela inicial de login
-├── login.php           # Autenticação do usuário
-├── register.html       # Formulário de cadastro
-├── register.php        # Criação da conta
-├── feed.php            # Linha do tempo: publicar, curtir, editar, excluir e sair
-├── profile.php         # Edição de nome de usuário e senha
-├── database.php        # Configuração da conexão com o banco (Capsule)
-├── User.php            # Model de usuários
-├── Tweet.php           # Model de publicações
-├── like.php            # Model de curtidas
-├── criatabelas.sql     # Script de criação das tabelas
-├── style.css           # Estilos das telas de login, cadastro e perfil
-├── TRENDY.png          # Logo do projeto
-├── composer.json
-└── composer.lock
-```
+| File | Purpose |
+| --- | --- |
+| `index.html` | Login landing page |
+| `login.php` | User authentication |
+| `register.html` | Sign up form |
+| `register.php` | Account creation |
+| `feed.php` | Timeline: post, like, edit, delete and log out |
+| `profile.php` | Username and password editing |
+| `database.php` | Database connection setup (Capsule) |
+| `User.php` | User model |
+| `Tweet.php` | Post model |
+| `like.php` | Like model |
+| `criatabelas.sql` | Table creation script |
+| `style.css` | Styles for the login, sign up and profile pages |
+| `TRENDY.png` | Project logo |
+| `composer.json`, `composer.lock` | PHP dependencies |
 
-## Banco de dados
+## Database
 
-O script `criatabelas.sql` cria três tabelas no banco `idw`:
+The `criatabelas.sql` script creates three tables in the `idw` database:
 
-- **users**: `id`, `username` (único), `password` (hash) e `cargo`
-- **tweets**: `id`, `user_id`, `username`, `content`, `is_edited`, `created_at` e `updated_at`
-- **likes**: relação entre `tweet_id` e `user_id`; as curtidas são apagadas junto com a publicação (`ON DELETE CASCADE`)
+- **users**: `id`, `username` (unique), `password` (hash) and `cargo` (role)
+- **tweets**: `id`, `user_id`, `username`, `content`, `is_edited`, `created_at` and `updated_at`
+- **likes**: links a `tweet_id` to a `user_id`; likes are removed together with their post (`ON DELETE CASCADE`)
 
-## Como executar
+## Getting started
 
-### Pré requisitos
+### Requirements
 
-- PHP 8.2 ou superior com a extensão `pdo_mysql`
-- MySQL ou MariaDB
+- PHP 8.2 or newer with the `pdo_mysql` extension
+- MySQL or MariaDB
 - Composer
 
-Uma opção prática é usar o XAMPP ou o Laragon, que já trazem PHP e MySQL.
+XAMPP or Laragon are handy options, since they ship with PHP and MySQL.
 
-### Passo a passo
+### Steps
 
-1. Clone o repositório:
+1. Clone the repository:
    ```bash
    git clone https://github.com/Wyllgner/trendy.git
    cd trendy
    ```
 
-2. Instale as dependências (a pasta `vendor` já está no repositório, mas este passo garante que ela esteja atualizada):
+2. Install the dependencies (the `vendor` folder is already committed, but this makes sure it is up to date):
    ```bash
    composer install
    ```
 
-3. Crie o banco de dados e as tabelas:
+3. Create the database and the tables:
    ```bash
    mysql -u root -p -e "CREATE DATABASE idw CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
    mysql -u root -p idw < criatabelas.sql
    ```
 
-4. Ajuste as credenciais em `database.php` caso o seu MySQL use outro usuário, senha ou porta:
+4. Update the credentials in `database.php` if your MySQL uses a different user, password or port:
    ```php
    'host'     => 'localhost:3306',
    'database' => 'idw',
@@ -127,41 +126,39 @@ Uma opção prática é usar o XAMPP ou o Laragon, que já trazem PHP e MySQL.
    'password' => '',
    ```
 
-5. Inicie o servidor embutido do PHP:
+5. Start PHP's built in server:
    ```bash
    php -S localhost:8000
    ```
 
-6. Acesse `http://localhost:8000` no navegador, crie uma conta e comece a publicar.
+6. Open `http://localhost:8000` in your browser, create an account and start posting.
 
-### Tornando um usuário administrador
+### Making a user an admin
 
-Não existe tela para promover usuários. Para isso, altere o cargo diretamente no banco:
+There is no screen for promoting users. Change the role directly in the database:
 
 ```sql
-UPDATE users SET cargo = 'admin' WHERE username = 'seu_usuario';
+UPDATE users SET cargo = 'admin' WHERE username = 'your_username';
 ```
 
-Depois, faça logout e login novamente para que a sessão carregue o novo cargo.
+Then log out and log in again so the session picks up the new role.
 
-## Pontos de melhoria
+## Known issues
 
-Como o projeto está encerrado, estes ajustes conhecidos ficaram registrados, mas não serão feitos:
+Since the project is archived, these known issues are documented here but will not be fixed:
 
-- A coluna `id` da tabela `likes` não tem `AUTO_INCREMENT` nem chave primária. Em servidores MySQL com modo
-  estrito ativo, a curtida pode falhar; basta alterar a coluna para `AUTO_INCREMENT PRIMARY KEY`
-- A exclusão de publicações só é restrita na interface; o servidor ainda não confere se quem pediu a exclusão é
-  o autor ou um administrador
-- Há um `var_dump($_SESSION)` esquecido no envio de novas publicações em `feed.php`
-- Os formulários não usam token CSRF
-- As credenciais do banco ficam fixas em `database.php`; o ideal seria lê-las de variáveis de ambiente
-- A pasta `vendor` está versionada; poderia ser ignorada pelo Git e gerada com `composer install`
+- The `id` column of the `likes` table has neither `AUTO_INCREMENT` nor a primary key. On MySQL servers running
+  in strict mode, liking a post may fail; changing the column to `AUTO_INCREMENT PRIMARY KEY` solves it
+- Deleting posts is only restricted in the interface; the server does not check whether the request comes from
+  the author or an admin
+- A leftover `var_dump($_SESSION)` runs when a new post is submitted in `feed.php`
+- Forms do not use CSRF tokens
+- Database credentials are hardcoded in `database.php` instead of being read from environment variables
+- The `vendor` folder is committed; it could be ignored by Git and generated with `composer install`
 
-## Autores
-
-Projeto desenvolvido por:
+## Authors
 
 - **Samih Santos**
 - **Wyllgner França**
 
-Universidade Federal de Rondônia (UNIR), 2024.
+Federal University of Rondônia (UNIR), 2024.
